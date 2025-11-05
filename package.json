@@ -1,9 +1,12 @@
 {
   "name": "ai-100x-se-join-quest",
   "module": "./src/index.ts",
-  "type": "module",
+  "scripts": {
+    "test:bdd": "cucumber-js"
+  },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@cucumber/cucumber": "^12.2.0",
+    "@types/bun": "^1.3.1"
   },
   "peerDependencies": {
     "typescript": "^5"
