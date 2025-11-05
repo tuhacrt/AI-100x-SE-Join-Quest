@@ -8,9 +8,9 @@
 - 參考 entities ERD: @ERD.png 以及 OOD 設計圖：@OOD.png 。兩張圖中所指示的類別屬性及操作只是基準，你可視情況增加新的類別、屬性或行為。
 
 ## Tech Stack
-1. Language Env：Python 3.11+
-2. BDD Test framework: Behave
-3. Native test framework: pytest
+1. Language Env：TypeScript 5+, Bun runtime
+2. BDD Test framework: Cucumber
+3. Native test framework: Bun test
 
 ## Application Environment
 1. App 類型：純模組程式碼
