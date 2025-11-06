@@ -34,6 +34,12 @@ Given('the buy one get one promotion for cosmetics is active', function () {
   orderItems = [];
 });
 
+Given('the Double Eleven Festival promotion is active', function () {
+  orderService = new OrderService();
+  orderService.setDoubleElevenPromotion(true);
+  orderItems = [];
+});
+
 When('a customer places an order with:', function (dataTable: DataTable) {
   const rows = dataTable.hashes();
 

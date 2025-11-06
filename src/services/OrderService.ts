@@ -5,6 +5,7 @@ export class OrderService {
   private thresholdAmount: number = 0;
   private thresholdDiscount: number = 0;
   private buyOneGetOneCategory: string = '';
+  private doubleElevenActive: boolean = false;
 
   setThresholdDiscount(threshold: number, discount: number): void {
     this.thresholdAmount = threshold;
@@ -13,6 +14,10 @@ export class OrderService {
 
   setBuyOneGetOnePromotion(category: string): void {
     this.buyOneGetOneCategory = category;
+  }
+
+  setDoubleElevenPromotion(active: boolean): void {
+    this.doubleElevenActive = active;
   }
 
   checkout(items: OrderItem[]): Order {
@@ -39,9 +44,18 @@ export class OrderService {
     }
     order.items = finalItems;
 
-    // Apply threshold discount if applicable
+    // Apply threshold discount or Double Eleven discount
     let discount = 0;
-    if (this.thresholdAmount > 0 && originalAmount >= this.thresholdAmount) {
+
+    if (this.doubleElevenActive) {
+      // Double Eleven: For every 10 units of same product, get 2 units free (20% discount)
+      for (const item of items) {
+        if (item.quantity >= 10) {
+          const completeSets = Math.floor(item.quantity / 10);
+          discount += completeSets * 2 * item.product.unitPrice;
+        }
+      }
+    } else if (this.thresholdAmount > 0 && originalAmount >= this.thresholdAmount) {
       discount = this.thresholdDiscount;
     }
 
